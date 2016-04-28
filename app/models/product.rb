@@ -7,4 +7,9 @@ class Product < ActiveRecord::Base
     message: 'must be a URL for GIF, JPG or PNG image.'
   }
   # we used the allow_blank option to avoid getting multiple error messages (cant be blank, and format be must be gif, jpg, png)
+
+  def self.latest
+    Product.order(:updated_at).last 
+  end
+
 end
