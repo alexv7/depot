@@ -4,22 +4,30 @@
 
 <h1>Your Pragmatic Catalog</h1>
 
-<% @products.each do |product| %>
-  <div class="entry">
-    <%= image_tag(product.image_url) %>
-    <h3><%= product.title %></h3>
-    <%= sanitize(product.description) %>
-    <div class="price_line">
-      <span class="price"><%= number_to_currency(product.price) %></span>
-      <!-- number_to_currency(product.price) is better than sprintf("$%0,02f", product.price)
-      because the latter hardcodes the $ which is not always ideal specially if this
-      will be an international e-commerce site -->
-    </div>
-  </div>
+<% cache ['store', Product.latest] do %>
+  <% @products.each do |product| %>
+    <% cache ['entry', product] do %>
+      <div class="entry">
+        <%= image_tag(product.image_url) %>
+        <h3><%= product.title %></h3>
+        <%= sanitize(product.description) %>
+        <!-- Note the use of the sanitize() method for the description. This allows us to
+        safely add HTML stylings to make the descriptions more interesting for our
+        customers. Note that this decision opens a potential security hole(cross-site scripting), but
+        because product descriptions are created by people who work for our company,
+        we think that the risk is minimal. -->
+        <div class="price_line">
+          <span class="price"><%= number_to_currency(product.price) %></span>
+          <!-- number_to_currency(product.price) is better than sprintf("$%0,02f", product.price)
+          because the latter hardcodes the $ which is not always ideal specially if this
+          will be an international e-commerce site -->
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>
 
-<!-- Note the use of the sanitize() method for the description. This allows us to
-safely add HTML stylings to make the descriptions more interesting for our
-customers. Note that this decision opens a potential security hole(cross-site scripting), but
-because product descriptions are created by people who work for our company,
-we think that the risk is minimal. -->
+We only need to re-render the overall cache entry 'store' if a product changed,
+and even then we need to render only the individual products ('entry') that actually changed.
+We also associate a product with each, namely, the latest with the overall store
+and the individual product we are rendering with the entry.
