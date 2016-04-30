@@ -6,12 +6,25 @@
 
 <table>
   <% @cart.line_items.each do |item| %>
-  <tr>
-    <td><%= item.quantity %> &times;</td>
-    <td><%= item.product.title %></td>
-    <td class="item_price"><%= number_to_currency(item.total_price) %></td>
-  </tr>
-    <% end %>
+
+    <%= form_for item do |f|%>
+      <tr>
+        <td>
+            <%= f.submit :value => "Update Qty" %>
+            <%= f.text_field :quantity, :size => 2 %>
+        </td>
+        <% end %>
+
+        <td><%= item.product.title %></td>
+        <td class="item_price"><%= number_to_currency(item.total_price) %></td>
+        <% if item.quantity == 1 %>
+        <td class="item_price"></td>
+        <% else  %>
+        <td class="item_price">(<%=number_to_currency(item.product.price)%> each)</td>
+        <% end %>
+        <td><%= button_to 'Delete Line Item', item, :method => :delete, :confirm => 'Are You Sure' %></td>
+    </tr>
+  <% end %>
 
   <tr class="total_line">
     <td colspan="2">Total</td>
@@ -23,5 +36,5 @@
 <%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure'} %>
 
 <!-- no need for these links -->
-<%#= link_to 'Edit', edit_cart_path(@cart) %> |
+<%#= link_to 'Edit', edit_cart_path(@cart) %>
 <%#= link_to 'Back', carts_path %>
