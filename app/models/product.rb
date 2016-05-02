@@ -22,10 +22,10 @@ class Product < ActiveRecord::Base
     if line_items.empty?
       return true
     else
-      errors.add(:base, 'Line Items present')
+      errors.add(:message, 'Line Items present')
       return false
     end
   end
-  
+
 
 end
