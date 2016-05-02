@@ -2,6 +2,8 @@ class LineItemsController < ApplicationController
   include CartsHelper
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_lineitem
+
 
   # GET /line_items
   # GET /line_items.json
@@ -12,6 +14,14 @@ class LineItemsController < ApplicationController
   # GET /line_items/1
   # GET /line_items/1.json
   def show
+    @line_item = LineItem.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => @line_item }
+    end
+    rescue ActiveRecord::RecordNotFound
+    logger.error "Attempt to access invalid line_item #{ params[ :id ]}"
+    redirect_to store_url, :notice => 'Invalid line item'
   end
 
   # GET /line_items/new
@@ -76,6 +86,11 @@ class LineItemsController < ApplicationController
   end
 
   private
+
+    def invalid_lineitem
+      logger.error "Attempt to access invalid line item #{params[:id]}"
+      redirect_to store_url, notice: 'Invalid line item'
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
       @line_item = LineItem.find(params[:id])

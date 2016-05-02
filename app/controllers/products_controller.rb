@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_product
+
 
   # GET /products
   # GET /products.json
@@ -10,6 +12,14 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => @product }
+    end
+    rescue ActiveRecord::RecordNotFound
+    logger.error "Attempt to access product #{ params[ :id ]}"
+    redirect_to products_url, :notice => 'Invalid product'
   end
 
   # GET /products/new
@@ -62,6 +72,12 @@ class ProductsController < ApplicationController
   end
 
   private
+
+    def invalid_product
+      logger.error "Attempt to access invalid product #{params[:id]}"
+      redirect_to store_url, notice: 'Invalid product'
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
