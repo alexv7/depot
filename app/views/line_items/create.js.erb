@@ -1,1 +1,4 @@
 $('#cart').html("<%= escape_javascript render :partial => 'carts/cart' %>");
+
+$('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 1000);
+// From highlight color to background color by fading
