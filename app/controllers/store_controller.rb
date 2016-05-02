@@ -1,4 +1,6 @@
 class StoreController < ApplicationController
+  include CartsHelper
+  before_action :set_cart
   def index
     @products = Product.order(:title)
     # The following is to get the number of visits to your homepage
