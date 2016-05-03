@@ -13,8 +13,10 @@
   </div>
   <div id="columns">
     <div id="side">
-      <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
-        <%= render :partial => "carts/cart" %>
+      <% if @cart %>
+        <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+          <%= render :partial => "carts/cart" %>
+        <% end %>
       <% end %>
 
       <ul>
