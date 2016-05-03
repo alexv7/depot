@@ -13,11 +13,11 @@
   </div>
   <div id="columns">
     <div id="side">
-      <% if @cart %>
+      <%# if @cart %>
         <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
           <%= render :partial => "carts/cart" %>
         <% end %>
-      <% end %>
+      <%# end %>
 
       <ul>
         <li> <a href="#"><%= Date.today %></a></li>
