@@ -11,6 +11,19 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def who_bought
+    @product = Product.find(params[:id])
+    @latest_order = @product.orders.order(:updated_at).last
+    if stale?(@latest_order) #see caching with rails, or google rails stale? etag...its about caching info and updating them as they come
+      respond_to do |format|
+        format.html
+        format.xml { render :xml => @product.to_xml(:include => :orders) }
+        format.json {render :json => @product.to_json(:include => :orders)}
+        format.atom
+      end
+    end
+  end
+
   # GET /products/1
   # GET /products/1.json
   def show

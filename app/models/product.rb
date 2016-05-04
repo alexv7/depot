@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   has_many :line_items
+  has_many :orders, through: :line_items #this is because both Order and Product have many line_items, so this is how you associate a Product with Order 
 
   before_destroy :ensure_not_referenced_by_any_line_item
 

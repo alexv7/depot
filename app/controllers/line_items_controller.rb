@@ -5,6 +5,17 @@ class LineItemsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_lineitem
 
 
+  # Activity 4
+  # Note that we did not add order_id (or, for that matter, quantity) to the
+  # attr_accessible line. This prevents mass assignment of these values by
+  # statements such as LineItem.new(params[:line_item]) in
+  # app/controllers/line_items_controller.rb. This is a good thing, as it prevents
+  # malicious users from creating their own forms that modify an order after
+  # it is placed. As product_id is still accessible, it still is theoretically
+  # possible for a cracker to substitute a more expensive item for a less
+  # expensive item. Close this hole by removing product_id from the accessible list.
+
+
   # GET /line_items
   # GET /line_items.json
   def index
