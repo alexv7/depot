@@ -104,7 +104,7 @@ class LineItemsController < ApplicationController
           @line_item.destroy
         end
         format.html { redirect_to @line_item.cart, notice: 'Line item was successfully updated.' }
-        format.js {@current_item = @line_item}
+        format.js {}
         format.json { render :show, status: :ok, location: @line_item }
       else
         format.html { render :edit }

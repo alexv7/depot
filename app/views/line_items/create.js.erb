@@ -1,3 +1,5 @@
+$('#notice').hide(); //This is so that you hide any lingering notice once you insert a product in cart via ajax (since page is not being refreshed)
+
 if ($('#cart tr').length == 1) {
   $('#cart').show('blind', 10);
 }
