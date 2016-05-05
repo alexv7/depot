@@ -10,7 +10,12 @@
 </table>
 
 <%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure'} %>
-<%= button_to 'Checkout', new_order_path, method: :get %>
+<%= button_to 'Checkout', new_order_path, method: :get, :disabled => @order.present? %>
+<!-- which is the same as  -->
+<%#= button_to 'Checkout', new_order_path, method: :get, :disabled => !@order.nil? %>
+
+
+
 
 <!-- This is how you would hide the checkout button from a specific page (either by entering the rails_path or the url or its extension in quotes) -->
 <%# unless current_page?(new_order_path) || current_page?('/products')%>
