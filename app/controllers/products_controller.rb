@@ -90,6 +90,7 @@ class ProductsController < ApplicationController
 
     def invalid_product
       logger.error "Attempt to access invalid product #{params[:id]}"
+      OrderNotifier.product_error_occured.deliver
       redirect_to store_url, notice: 'Invalid product'
     end
 

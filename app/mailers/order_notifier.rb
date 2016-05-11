@@ -21,4 +21,15 @@ class OrderNotifier < ApplicationMailer
 
     mail to: order.email, subject: 'Pragmatic Store Order Shipped'
   end
+
+  def cart_error_occured(error)
+    @error = error
+    # @error = ActiveRecord::RecordNotFound
+    mail :to => "alexvarjabedian7@gmail.com", :subject => 'Depot App Error Incident'  ## replace your email id to receive mails
+  end
+
+  def product_error_occured
+    mail :to => "alexvarjabedian7@gmail.com", :subject => 'Depot App Error Incident'  ## replace your email id to receive mails
+  end
+
 end
