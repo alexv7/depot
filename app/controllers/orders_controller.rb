@@ -51,8 +51,11 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    @order = Order.find(params[:id])
+
     respond_to do |format|
       if @order.update(order_params)
+        OrderNotifier.shipped(@order).deliver unless @order.ship_date.nil? #so basically this will send an email when ship date is not nil...aka it is now updated
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
@@ -61,6 +64,22 @@ class OrdersController < ApplicationController
       end
     end
   end
+
+  def update
+      @order = Order.find(params[:id])
+
+      respond_to do |format|
+        if @order.update_attributes(params[:order])
+          Notifier.order_shipped(@order).deliver unless @order.ship_date.nil?
+          format.html { redirect_to(@order, :notice => 'Order was successfully updated.') }
+          format.xml { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml { render :xml => @order.errors, :status => :unprocessable_entity }
+        end
+      end
+    end
+
 
   # DELETE /orders/1
   # DELETE /orders/1.json
