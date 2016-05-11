@@ -23,8 +23,8 @@ Rails.application.configure do
     port: 587,
     domain: "mail.google.com",
     authentication: "plain",
-    user_name: 'secret',
-    password: 'secret',
+    user_name: Rails.configuration.x.gmail['username'],
+    password: Rails.configuration.x.gmail['password'],
     enable_starttls_auto: true
   }
 

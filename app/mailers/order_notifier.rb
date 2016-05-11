@@ -1,5 +1,5 @@
 class OrderNotifier < ApplicationMailer
-  default from: 'Secret <secret@gmail.com>'
+  default from: 'Yournamehere <itdoesntmatter@gmail.com>'
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -15,7 +15,7 @@ class OrderNotifier < ApplicationMailer
   # with the following lookup:
   #
   #   en.order_notifier.shipped.subject
-  
+
   def shipped
     @greeting = "Hi"
 
