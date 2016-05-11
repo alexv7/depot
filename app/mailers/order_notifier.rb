@@ -15,7 +15,7 @@ class OrderNotifier < ApplicationMailer
   # with the following lookup:
   #
   #   en.order_notifier.shipped.subject
-  #
+  
   def shipped
     @greeting = "Hi"
 
