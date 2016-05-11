@@ -4,6 +4,28 @@
 
 <p>Yassou you ordered the following items:</p>
 
-  <%#= render partial: 'line_items/line_item.text.erb' %>
+  <table>
+    <% @order.line_items.each do |item| %>
+      <% if item == @current_item %>
+          <tr id="current_item">
+      <% else %>
+        <tr>
+      <% end %>
+          <td><%= item.quantity %>&times;</td>
+          <td><%= item.product.title %></td>
+          <td class="item_price"><%= number_to_currency(item.total_price) %></td>
+    <% end %>
+    <tr class="total_line">
+      <td colspan="2">Total</td>
+      <td class="total_cell"><%= number_to_currency(@order.total_price) %></td>
+    </tr>
+  </table>
+
+
+  <%#= render @order.line_items %>
+
+  <%#= sprintf("%2d x %s",
+              line_item.quantity,
+              truncate(line_item.product.title, length: 50)) %>
 
 <p>We'll send you a separate e-mail when your order ships.</p>

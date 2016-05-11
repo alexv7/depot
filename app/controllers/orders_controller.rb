@@ -35,9 +35,9 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save #we tell the order object to save itself (and its children, the line items) to the database. Along the way, the order object will perform validation
+        OrderNotifier.received(@order).deliver
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        OrderNotifier.received(@order).deliver
 
         format.html { redirect_to store_url, notice: 'Thank you for your order.' }
         format.json { render action: 'show', status: :created, location: @order }
