@@ -59,7 +59,7 @@ class UsersController < ApplicationController
     begin
       @user.destroy
       flash[:notice] = "User #{@user.name} deleted"
-    rescue StandardError => e
+    rescue StandardError => e #this resue happens only if an error is raised
       flash[:notice] = e.message
     end
       respond_to do |format|
