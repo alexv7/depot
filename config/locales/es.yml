@@ -1,4 +1,4 @@
-# Note that indentation is crucial in .yml files 
+# Note that indentation is crucial in .yml files
 
 es:
 
@@ -11,3 +11,21 @@ es:
       questions: "Preguntas"
       news: "Noticias"
       contact: "Contacto"
+
+  store:
+    index:
+      title_html: "Su Cat&aacute;logo de Pragmatic"
+      add_html: "A&ntilde;adir al Carrito"
+
+  # Note that since title_html and add_html end in the characters _html, we are free to
+  # use HTML entity names for characters that do not appear on our keyboard.
+  # If we did not name the translation key this way, what you would end up seeing
+  # on the page is the markup. This is yet another convention that Rails has
+  # adopted to make your coding life easier. Rails will also treat names that contain
+  # html as a component (in other words, the string .html.) as HTML key names.
+
+  carts:
+    cart:
+      title: "Carrito de la Compra"
+      empty: "Vaciar Carrito"
+      checkout: "Comprar"
