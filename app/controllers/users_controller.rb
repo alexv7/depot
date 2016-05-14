@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   # Use this command in terminal to get the same result but much prettier as Users.all in rails c
   # sqlite3 -line db/development.sqlite3 "SELECT 'users'.* FROM 'users'"
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :authorize, :only => [:new, :create]
 
   # GET /users
   # GET /users.json
