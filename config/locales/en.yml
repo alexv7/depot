@@ -19,5 +19,17 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+
+# Note that indentation is crucial in .yml files
 en:
   hello: "Hello world"
+
+  layouts:
+    application:
+      title: "Pragmatic Bookshelf"
+      mycart: "My Cart"
+      home: "Home"
+      products: "Products"
+      questions: "Questions"
+      news: "News"
+      contact: "Contact"

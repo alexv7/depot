@@ -1,0 +1,13 @@
+# Note that indentation is crucial in .yml files 
+
+es:
+
+  layouts:
+    application:
+      title: "Publicaciones de Pragmatic"
+      home: "Inicio"
+      mycart: "Mi Carrito"
+      products: "Productos"
+      questions: "Preguntas"
+      news: "Noticias"
+      contact: "Contacto"
