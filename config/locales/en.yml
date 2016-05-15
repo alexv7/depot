@@ -74,3 +74,5 @@ en:
       pay_type: "Pay with"
       pay_prompt_html: "Select a payment method"
       submit: "Place Order"
+
+  thanks: "Thank you for your order"
