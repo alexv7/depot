@@ -6,7 +6,8 @@ class StoreController < ApplicationController
     if params[:set_locale]
       redirect_to store_url(locale: params[:set_locale])
     else
-    @products = Product.order(:title)
+      # @products = Product.order(:title)
+      @products = Product.where(locale: I18n.locale)
     end
     # The following is to get the number of visits to your homepage
     session[:counter] ||= 0

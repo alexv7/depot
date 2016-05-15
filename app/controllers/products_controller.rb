@@ -7,8 +7,16 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
+  # def index
+  #   @products = Product.all
+  # end
+
   def index
-    @products = Product.all
+    @products = Product.where(locale: I18n.locale)
+    respond_to do |format|
+       format.html # index.html.erb
+       format.json { render json: @products }
+     end
   end
 
   def who_bought
@@ -101,6 +109,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :description, :image_url, :price)
+      params.require(:product).permit(:title, :description, :image_url, :price, :locale)
     end
 end
