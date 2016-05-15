@@ -10,10 +10,23 @@ Rails.application.routes.draw do
   scope '(:locale)' do
     resources :orders
     resources :carts
+
+    resources :products do
+    get :who_bought, on: :member
+    end
+
     resources :line_items do
       put 'decrease', on: :member
       put 'increase', on: :member
     end
+
+    get 'admin' => 'admin#index'
+    controller :sessions do
+      get 'login' => :new
+      post 'login' => :create
+      delete 'logout' => :destroy
+    end
+
     root 'store#index', as: 'store', via: :all
   end
 
@@ -23,12 +36,12 @@ Rails.application.routes.draw do
   # administrative and session functions inside this scope, because it is not our
   # intent to translate them at this time.
 
-  get 'admin' => 'admin#index'
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
-  end
+  # get 'admin' => 'admin#index'
+  # controller :sessions do
+  #   get 'login' => :new
+  #   post 'login' => :create
+  #   delete 'logout' => :destroy
+  # end
 
   get "session/create"
   get "sessions/destroy"
@@ -40,11 +53,11 @@ Rails.application.routes.draw do
   #   put 'decrease', on: :member
   #   put 'increase', on: :member
   # end
-  # get 'store/index'
+  # root 'store#index', as: 'store'
 
-  resources :products do
-  get :who_bought, on: :member
-  end
+  # resources :products do
+  # get :who_bought, on: :member
+  # end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
