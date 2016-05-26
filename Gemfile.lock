@@ -23,6 +23,11 @@ GEM
     activejob (4.2.5.1)
       activesupport (= 4.2.5.1)
       globalid (>= 0.3.0)
+    activemerchant (1.59.0)
+      activesupport (>= 3.2.14, < 5.1)
+      builder (>= 2.1.2, < 4.0.0)
+      i18n (>= 0.6.9)
+      nokogiri (~> 1.4)
     activemodel (4.2.5.1)
       activesupport (= 4.2.5.1)
       builder (~> 3.1)
@@ -55,6 +60,8 @@ GEM
     execjs (2.6.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    haml (4.0.7)
+      tilt
     i18n (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -67,6 +74,9 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.8.3)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -147,12 +157,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemerchant
   bcrypt (~> 3.1.7)
   byebug
   coffee-rails (~> 4.1.0)
+  haml
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
+  kaminari
   rails (= 4.2.5.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

@@ -1,5 +1,5 @@
 class OrderNotifier < ApplicationMailer
-  default from: 'Yournamehere <itdoesntmatter@gmail.com>'
+  default from: 'Yournamehere <itdoesntmatter@gmail.com>' #this does matter as we saw with group shalex
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
