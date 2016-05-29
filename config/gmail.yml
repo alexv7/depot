@@ -1,0 +1,9 @@
+production:
+  environment: production
+  username: 
+  password:  
+
+development:
+  environment: development
+  username: 
+  password:  
