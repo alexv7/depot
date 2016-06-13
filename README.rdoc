@@ -3,12 +3,19 @@ E-commerce site built with ruby on rails by following Agile Web Development with
 The webapp contains the following features:
 
 -AJAX
+
 -Credit Card validations
+
 -Automatic confirmation email sending upon purchase
+
 -Spanish Translation
+
 -Internationalization for different currency
+
 -Caching
+
 -User validations
+
 -Capturing errors and notifying admin via email
 
 You can check it out at: alexdepot.herokuapp.com
