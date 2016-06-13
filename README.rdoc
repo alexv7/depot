@@ -1,28 +1,14 @@
-== README
+E-commerce site built with ruby on rails by following Agile Web Development with Rails 4.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The webapp contains the following features:
 
-Things you may want to cover:
+-AJAX
+-Credit Card validations
+-Automatic confirmation email sending upon purchase
+-Spanish Translation
+-Internationalization for different currency
+-Caching
+-User validations
+-Capturing errors and notifying admin via email
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+You can check it out at: alexdepot.herokuapp.com
